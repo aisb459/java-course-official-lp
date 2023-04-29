@@ -1,0 +1,20 @@
+services:
+  palindrome-api:
+    image: palindrome-api:1.0.0
+    container_name: palindrome-api-1
+    build:
+      context: ./palindrome-api
+    ports:
+      - 8083:8083
+  word-play-api:
+    image: word-play-api:1.0.0
+    container_name: word-play-api-1
+    build:
+      context: ./word-play-api
+    ports:
+      - 8084:8084
+    environment:
+      - HOST=host.docker.internal
+      - PORT=8083
+    depends_on:
+      - palindrome-api
