@@ -1,0 +1,14 @@
+company:
+  name: HP
+  employees: 200000
+  countries: India,USA
+session:
+  topics:
+    -Functional programming with Erlang: 60
+    -Scala Tricks: 45
+    -Spring unit testing: 90
+    -Unit testing JavaScript: 90
+    -Goroutines: 45
+    -RoR: 90
+    -Concurrency on the JVM: 60
+
