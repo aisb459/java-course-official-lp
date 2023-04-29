@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: jpa-with-spring-boot
+  datasource:
+    url: jdbc:mysql://localhost:3306/training
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+welcome: DEV welcome
+server:
+  port: 8081
