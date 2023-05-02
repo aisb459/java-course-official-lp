@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: consumerMovieInformation
+      binders:
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: localhost:9092
+                      configuration:
+                        security.protocol: PLAINTEXT
+                        sasl.mechanism: PLAIN
+                        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="user" password="bitnami";
+      bindings:
+        consumerMovieInformation-in-0:
+          destination: movie-topic
+          group: movie-topic-consumer-cs-local
+          consumer:
+            max-attempts: 2
+            auto-offset-reset: latest
+            back-off-max-interval: 1000
+            back-off-multiplier: 2.0
+            enableDlq: true
+            dlqName: movie-topic-dlt
+            configuration:
+              key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              value.deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+          producer:
+            configuration:
+              key.serializer: org.apache.kafka.common.serialization.StringSerializer
+              value.serializer: org.springframework.kafka.support.serializer.JsonSerializer
